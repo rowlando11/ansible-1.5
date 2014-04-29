@@ -1,0 +1,7 @@
+---
+
+- name: appserver test
+  hosts: dev
+
+  roles:
+    - common

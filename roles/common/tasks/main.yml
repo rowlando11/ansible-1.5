@@ -1,0 +1,56 @@
+# configure base defaults
+---
+
+- name: create .ssh dir for root user
+  file: dest=/root/.ssh mode=700 owner=root group=root state=directory
+
+- name: copy root public key to remote servers
+  copy: src=../files/id_dsa.pub dest=/root/.ssh/authorized_keys 
+        owner=root group=root mode=400 backup=yes
+
+- name: set correct timezone
+  file: src=/usr/share/zoneinfo/Europe/London dest=/etc/localtime 
+        state=link owner=root group=root force=yes
+  tags:
+    - time
+
+- name: keep server clocks in sync
+  cron: name="keep server time in sync" hour=*/1
+        user="root" job="/usr/sbin/ntpdate 10.220.10.1 > /dev/null 2>&1"
+  tags:
+    - time
+
+- name: locale language keyboard
+  copy: src=../files/{{ item }} dest=/etc/sysconfig/{{ item }}
+  with_items:
+  
+    - i18n
+    - keyboard
+    - clock
+  tags:
+    - region 
+
+- name: motd template
+  template: src=motd.j2 dest=/etc/motd owner=root group=root mode=644
+  tags:
+    - motd
+
+- name: configure /etc/hosts file
+  copy: src=hosts dest=/etc/hosts owner=root group=root mode=644
+  tags:
+    - hostfile
+#########################
+### IBM iops pre-reqs ###
+#########################
+- name: change sysctl.conf settings
+  lineinfile: dest=/etc/sysctl.conf regexp='^net.ipv4.tcp_fin_timeout' line='net.ipv4.tcp_fin_timeout=15'
+  notify:
+    - reload sysctl.conf
+  tags:
+    - sysctl
+
+- name: /etc/security/limits.conf config
+  copy: src=limits.conf  dest=/etc/security/limits.conf owner=root group=root mode=644
+  copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
+  tags:
+    - security
