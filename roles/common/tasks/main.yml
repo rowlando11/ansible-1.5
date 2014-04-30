@@ -1,4 +1,8 @@
+############################################################################
 # configure base defaults
+# a lot of stuff that could/should be in the kickstart file, however,
+# this file should enforce it.
+############################################################################
 ---
 
 - name: create .ssh dir for root user
