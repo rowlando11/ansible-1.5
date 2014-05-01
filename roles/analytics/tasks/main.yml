@@ -1,0 +1,5 @@
+# manage the appserver install and configs
+---
+
+- name: install screen
+  yum:  pkg=screen state=installed

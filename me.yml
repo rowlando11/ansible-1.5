@@ -4,3 +4,4 @@
 - hosts: me
   roles:
     - common
+    - me

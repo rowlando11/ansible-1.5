@@ -8,3 +8,6 @@ ITSCL019798
 # control host
 [me]
 ITSCL019501
+
+[targets]
+ITSCL019501	ansible_connection=local 
