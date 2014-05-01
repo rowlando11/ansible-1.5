@@ -1,8 +1,10 @@
-############################################################################
+###########################################################################
 # configure base defaults
 # a lot of stuff that could/should be in the kickstart file, however,
 # this file should enforce it.
 ############################################################################
+
+
 ---
 
 - name: create .ssh dir for root user
@@ -43,18 +45,29 @@
   copy: src=hosts dest=/etc/hosts owner=root group=root mode=644
   tags:
     - hostfile
+
 #########################
 ### IBM iops pre-reqs ###
 #########################
-- name: change sysctl.conf settings
+- name: set net.ipv4.tcp_fin_timeout=15 (kernel parameter)
   lineinfile: dest=/etc/sysctl.conf regexp='^net.ipv4.tcp_fin_timeout' line='net.ipv4.tcp_fin_timeout=15'
   notify:
     - reload sysctl.conf
   tags:
     - sysctl
 
+
 - name: /etc/security/limits.conf config
   copy: src=limits.conf  dest=/etc/security/limits.conf owner=root group=root mode=644
   copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
   tags:
     - security
+########################
+### END of iops pre  ###
+########################
+
+
+- name: enable compression of log files upon rotation 
+  lineinfile: dest=/etc/logrotate.conf regexp='^#compress' line='compress'
+  tags:
+    - logs
