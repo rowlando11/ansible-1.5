@@ -1,0 +1,6 @@
+# file: me.yml
+# self configuration file
+
+- hosts: me
+  roles:
+    - common

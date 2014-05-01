@@ -1,0 +1,4 @@
+## production host inventory
+# ansible control host
+[me]
+ITSCL019501
