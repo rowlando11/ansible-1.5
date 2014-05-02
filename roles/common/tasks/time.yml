@@ -1,8 +1,0 @@
-# keep the time up to date
-
----
-
-- name: keep server clocks in sync
-  cron: name="keep server time in sync" hour=*/1
-        user="root" job="/usr/sbin/ntpdate 10.220.10.1 > /dev/null 2>&1"
-        

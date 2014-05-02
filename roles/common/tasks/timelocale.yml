@@ -1,0 +1,24 @@
+---
+
+- name: set correct timezone
+  file: src=/usr/share/zoneinfo/Europe/London dest=/etc/localtime
+        state=link owner=root group=root force=yes
+  tags:
+    - timelocale
+
+- name: keep server clocks in sync
+  cron: name="keep server time in sync" hour=*/1
+        user="root" job="/usr/sbin/ntpdate 10.220.10.1 > /dev/null 2>&1"
+  tags:
+    - timelocale
+
+- name: locale language keyboard
+  copy: src=../files/{{ item }} dest=/etc/sysconfig/{{ item }}
+  with_items:
+
+    - i18n
+    - keyboard
+    - clock
+  tags:
+    - timelocale
+

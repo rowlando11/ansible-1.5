@@ -1,0 +1,21 @@
+---
+#########################
+### IBM iocs pre-reqs ###
+#########################
+- name: set net.ipv4.tcp_fin_timeout=15 (kernel parameter)
+  lineinfile: dest=/etc/sysctl.conf regexp='^net.ipv4.tcp_fin_timeout' line='net.ipv4.tcp_fin_timeout=15'
+  notify:
+     - reload sysctl.conf
+  tags:
+     - iocpre
+
+
+- name: /etc/security/limits.conf config
+  copy: src=limits.conf  dest=/etc/security/limits.conf owner=root group=root mode=644
+  copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
+  tags:
+    - iocpre
+########################
+### END of iocs pre  ###
+########################
+

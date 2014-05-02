@@ -1,0 +1,12 @@
+---
+- name: enable compression of log files upon rotation
+  lineinfile: dest=/etc/logrotate.conf insertafter='^#compress' line='compress'
+  tags:
+    - logs
+
+- name: enable rotation of /var/log/ansible.log
+  lineinfile: dest=/etc/logrotate.d/syslog insertafter="^\/var\/log\/messages" line='/var/log/ansible.log'
+  when: ansible_hostname == "ITSCL019501"
+  tags:
+    - logs
+
