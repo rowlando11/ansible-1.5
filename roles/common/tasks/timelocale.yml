@@ -1,13 +1,17 @@
+#########################################################
+# timelocale.yml sets time, locale, language & keyboard #
+#########################################################
+
 ---
 
-- name: set correct timezone
+- name: set correct timezone Europe/London
   file: src=/usr/share/zoneinfo/Europe/London dest=/etc/localtime
         state=link owner=root group=root force=yes
   tags:
     - timelocale
 
-- name: keep server clocks in sync
-  cron: name="keep server time in sync" hour=*/1
+- name: add cron entry for ntpdate sync to timeserver 
+  cron: name="keep server time in sync" special_time=hourly
         user="root" job="/usr/sbin/ntpdate 10.220.10.1 > /dev/null 2>&1"
   tags:
     - timelocale

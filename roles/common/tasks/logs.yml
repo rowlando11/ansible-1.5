@@ -1,3 +1,5 @@
+# logs.yml
+
 ---
 - name: enable compression of log files upon rotation
   lineinfile: dest=/etc/logrotate.conf insertafter='^#compress' line='compress'

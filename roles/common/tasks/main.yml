@@ -1,3 +1,5 @@
+# main.yml - config for all common role servers goes in here..
+#
 ######################################################################
 # Some configuration defaults which may overlap the kickstart file   #
 # settings but which will help keep specific server settings in sync.#
@@ -29,6 +31,6 @@
 # specific include files go here as so to keep this file cleaner/readable #
 # #########################################################################
 
-- include: logs.yml
-- include: timelocale.yml
-- include: iocpre.yml
+- include: logs.yml                     # configure logs
+- include: timelocale.yml               # configure time/locale
+- include: iocpre.yml                   # ioc prerequisites
