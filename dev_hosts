@@ -1,5 +1,5 @@
-## development host inventory
-# dev hosts
+## file: development
+
 [dev]
 ITSCL019A97
 ITSCL019898
