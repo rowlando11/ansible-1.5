@@ -1,7 +1,13 @@
-## file: development
+## file: development inventory
 
-[dev]
+[appservers]
 ITSCL019A97
+
+[webservers]
 ITSCL019898
+
+[analytics]
 ITSCL019A98
+
+[dbservers]
 ITSCL019798

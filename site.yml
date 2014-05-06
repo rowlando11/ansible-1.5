@@ -1,5 +1,7 @@
 ---
 # file: site.yml
-
-
-- include: dev.yml
+# site wide configuration 
+- include: analytics.yml
+- include: webserver.yml
+- include: dbserver.yml
+- include: appserver.yml 

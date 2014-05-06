@@ -1,7 +1,6 @@
 ---
-
-- name: appserver test
-  hosts: dev
-
+# file: appserver.yml
+- hosts: appservers
   roles:
     - common
+    - appserver

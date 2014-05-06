@@ -6,23 +6,23 @@
 ######################################################################
 ---
 
-- name: create .ssh dir for root user
-  file: dest=/root/.ssh mode=700 owner=root group=root state=directory
-
-- name: copy root public key to remote servers
-  copy: src=../files/id_dsa.pub dest=/root/.ssh/authorized_keys 
-        owner=root group=root mode=400 backup=yes
-
-
-- name: motd template
-  template: src=motd.j2 dest=/etc/motd owner=root group=root mode=644
-  tags:
-    - motd
-
 - name: configure /etc/hosts file
   copy: src=hosts dest=/etc/hosts owner=root group=root mode=644
   tags:
     - hostfile
+
+#- name: create .ssh dir for root user
+#  file: dest=/root/.ssh mode=700 owner=root group=root state=directory
+
+#- name: copy root public key to remote servers
+#  copy: src=../files/id_dsa.pub dest=/root/.ssh/authorized_keys 
+#        owner=root group=root mode=400 backup=yes
+
+
+- name: configure message of the day 
+  template: src=motd.j2 dest=/etc/motd owner=root group=root mode=644
+  tags:
+    - motd
 
 
 
@@ -31,6 +31,7 @@
 # specific include files go here as so to keep this file cleaner/readable #
 # #########################################################################
 
+- include: pubkey.yml                   # root ssh pub key
 - include: logs.yml                     # configure logs
 - include: timelocale.yml               # configure time/locale
 - include: iocpre.yml                   # ioc prerequisites

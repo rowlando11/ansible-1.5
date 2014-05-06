@@ -1,9 +1,15 @@
-# copy root public key pair to all servers
+# file: pubkey.yml
+# ##################################################
+# copy root public key pair to all servers         #
+# this play must be run with the  -k or --ask-pass #
+# flags to enable key auth from here on            #
+# ##################################################
 
 ---
 
-- name: create .ssh dir for root user
-  file: dest=/root/.ssh mode=700 owner=root group=root state=present
+- name: Set up authorized keys for control management
+  authorized_key: user=root key="{{ lookup('file', '/root/.ssh/id_dsa.pub') }}"
 
-- name: copy root public key to remote servers
-  copy: src=../files/id_dsa.pub dest=/root/.ssh/authorized_keys owner=root group=root mode=400 backup=yes
+  tags:
+    - pubkey
+
