@@ -1,4 +1,13 @@
 ## file: production
+[appservers]
+
+[webservers]
+
+[analytics]
+
+[dbservers]
+
+[devservers]
 
 [me]
 ITSCL019501
