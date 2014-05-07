@@ -2,7 +2,7 @@
 
 ---
 #########################
-### IBM iocs pre-reqs ###
+### IBM ioc pre-reqs  ###
 #########################
 - name: set net.ipv4.tcp_fin_timeout=15 (kernel parameter)
   lineinfile: dest=/etc/sysctl.conf regexp='^net.ipv4.tcp_fin_timeout' line='net.ipv4.tcp_fin_timeout=15'

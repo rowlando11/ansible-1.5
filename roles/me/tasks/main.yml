@@ -1,6 +1,6 @@
 # self configuring file for me
 ---
-- name: install ruby,git,vim-common,vim-enhanced
+- name: install ruby,vim-common,vim-enhanced
   yum:  pkg={{ item }} state=installed
   with_items:
     - ruby
