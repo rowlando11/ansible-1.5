@@ -1,7 +1,0 @@
----
-
-- name: dev environment config 
-  hosts: dev
-
-  roles:
-    - common
