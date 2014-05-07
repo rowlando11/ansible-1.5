@@ -1,10 +1,9 @@
 # self configuring file for me
 ---
 - name: install ruby,git,vim-common,vim-enhanced
-  yum:  pkg={{ item }} state=latest
+  yum:  pkg={{ item }} state=installed
   with_items:
     - ruby
-    - git
     - vim-common
     - vim-enhanced 
    

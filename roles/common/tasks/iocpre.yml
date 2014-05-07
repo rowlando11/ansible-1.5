@@ -6,6 +6,7 @@
 #########################
 - name: set net.ipv4.tcp_fin_timeout=15 (kernel parameter)
   lineinfile: dest=/etc/sysctl.conf regexp='^net.ipv4.tcp_fin_timeout' line='net.ipv4.tcp_fin_timeout=15'
+  when: ansible_distribution == "RedHat"
   notify:
      - reload sysctl.conf
   tags:
@@ -14,7 +15,9 @@
 
 - name: /etc/security/limits.conf config
   copy: src=limits.conf  dest=/etc/security/limits.conf owner=root group=root mode=644
+  when: ansible_distribution == "RedHat"
   copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
+  when: ansible_distribution == "RedHat"
   tags:
     - iocpre
 ########################
