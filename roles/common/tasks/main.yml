@@ -7,10 +7,9 @@
 ---
 
 - name: configure /etc/hosts file
-  copy: src=hosts dest=/etc/hosts owner=root group=root mode=644
+  template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=644
   tags:
     - hostfile
-
 
 
 - name: configure message of the day 

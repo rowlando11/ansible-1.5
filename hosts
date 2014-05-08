@@ -1,13 +1,13 @@
 # development host inventory
 [dev]
-ITSCL019A97
-ITSCL019898
-ITSCL019A98
-ITSCL019798
+ITSCL019A97.itservices.local
+ITSCL019898.itservices.local
+ITSCL019A98.itservices.local
+ITSCL019798.itservices.local
 
 # control host
 [me]
-ITSCL019501
+ITSCL019501.itservices.local
 
 [targets]
-ITSCL019501	ansible_connection=local 
+ITSCL019501.itservices.local	ansible_connection=local 

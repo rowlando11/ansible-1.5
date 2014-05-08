@@ -1,22 +1,27 @@
 ## file: development inventory
 
 [appservers]
-ITSCL019A97
+ITSCL019A97.itservices.local
 
 [webservers]
-ITSCL019898
+ITSCL019898.itservices.local
 
 [analytics]
-ITSCL019A98
+ITSCL019A98.itservices.local
 
 [dbservers]
-ITSCL019798
+ITSCL019798.itservices.local
 
 [devservers]
-ITSCL019A97
-ITSCL019898
-ITSCL019A98
-ITSCL019798
+ITSCL019A97.itservices.local
+ITSCL019898.itservices.local
+ITSCL019A98.itservices.local
+ITSCL019798.itservices.local
 
+# control host
 [me]
-ITSCL019501
+ITSCL019501.itservices.local
+
+[targets]
+ITSCL019501.itservices.local     ansible_connection=local
+

@@ -1,9 +1,9 @@
 # file: pubkey.yml
-# ##################################################
+####################################################
 # copy root public key pair to all servers         #
 # this play must be run with the  -k or --ask-pass #
 # flags to enable key auth from here on            #
-# ##################################################
+####################################################
 
 ---
 
