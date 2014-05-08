@@ -7,7 +7,4 @@
 
 [dbservers]
 
-[prodservers]
-
-[me]
-ITSCL019501.itservices.local
+[testservers]
