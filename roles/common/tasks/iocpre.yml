@@ -4,22 +4,60 @@
 #########################
 ### IBM ioc pre-reqs  ###
 #########################
+
 - name: set net.ipv4.tcp_fin_timeout=15 (kernel parameter)
-  lineinfile: dest=/etc/sysctl.conf regexp='^net.ipv4.tcp_fin_timeout' line='net.ipv4.tcp_fin_timeout=15'
+  sysctl: name=net.ipv4.tcp_fin_timeout value=15 state=present reload=yes
   when: ansible_distribution == "RedHat"
-  notify:
-     - reload sysctl.conf
   tags:
-     - iocpre
+    - iocpre
 
 
-- name: /etc/security/limits.conf config
-  copy: src=limits.conf  dest=/etc/security/limits.conf owner=root group=root mode=644
+- name: /etc/security/limits.conf hard limit config
+  lineinfile: dest=/etc/security/limits.conf
+              state=present
+              insertafter='^#@student        -'
+              line='*               hard    nofile          20480'
   when: ansible_distribution == "RedHat"
+  tags:
+    - iocpre
+
+- name: /etc/security/limits.conf soft limit config
+  lineinfile: dest=/etc/security/limits.conf
+              state=present
+              insertafter='^#@student        -'
+              line='*               soft    nofile          20480'
+  when: ansible_distribution == "RedHat"
+  tags:
+    - iocpre
+
+
+- name: extras (1) for /etc/security/limits.conf
+  lineinfile: dest=/etc/security/limits.conf
+              state=present
+              insertafter='^# End of file'
+              line='notes hard nofile 65535'
+  when: role == "APP"
+  
+  tags:
+    - iocpre
+
+- name: extras (2) for /etc/security/limits.conf
+  lineinfile: dest=/etc/security/limits.conf
+              state=present
+              insertafter='^# End of file'
+              line='notes soft nofile 65535'
+  when: role == "APP"
+  tags:
+    - iocpre
+
+
+- name: /etc/security/limits.d/90-nproc.conf config
   copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
   when: ansible_distribution == "RedHat"
   tags:
     - iocpre
+
+
 ########################
 ### END of iocs pre  ###
 ########################

@@ -1,5 +1,6 @@
 ## file: production
 [appservers]
+10.220.254.3
 
 [webservers]
 
@@ -9,5 +10,5 @@
 
 [prodservers]
 
-[me]
-ITSCL019501.itservices.local
+#[me]
+#ITSCL019501.itservices.local
