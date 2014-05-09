@@ -20,8 +20,8 @@ ITSCL019798.itservices.local
 
 # control host
 [me]
-ITSCL019501.itservices.local
+ITSCL019501.itservices.local 	  ansible_connection=local
 
-[targets]
-ITSCL019501.itservices.local     ansible_connection=local
+#[targets]
+#ITSCL019501.itservices.local     ansible_connection=local
 
