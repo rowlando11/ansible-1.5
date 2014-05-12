@@ -59,13 +59,12 @@
 
 
 - name: sshd_config settings
-  lineinfile:
-    dest=/etc/ssh/sshd_config
-    state=present
-    regexp=^{{ item.key }}
-    line="{{ item.key }} {{ item.value }}"
-    insertafter=EOF
- with_items:
+  lineinfile: dest=/etc/ssh/sshd_config
+              state=present
+              regexp=^{{ item.key }}
+              line="{{ item.key }} {{ item.value }}"
+              insertafter=EOF
+  with_items:
     - { key: 'PermitRootLogin', value: 'yes' }
     - { key: 'PasswordAuthentication', value: 'yes' }
   notify:

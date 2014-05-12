@@ -5,6 +5,13 @@ ITSCL019898.itservices.local
 ITSCL019A98.itservices.local
 ITSCL019798.itservices.local
 
+[test]
+ITSCL019A03.itservices.local
+ITSCL019804.itservices.local
+ITSCL019A02.itservices.local
+ITSCL019702.itservices.local
+
+
 # control host
 [me]
 ITSCL019501.itservices.local
