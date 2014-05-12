@@ -37,7 +37,6 @@
               insertafter='^# End of file'
               line='notes hard nofile 65535'
   when: role == "APP"
-  
   tags:
     - iocpre
 
@@ -59,23 +58,21 @@
     - iocpre
 
 
-#- name: ssh config test
-#  lineinfile:
-#    dest=/etc/ssh/sshd_config
-#    state=present
-#    regexp=^{{ item.key }}
-#    line="{{ item.key }} {{ item.value }}"
-#    insertafter=EOF
-#  with_items:
-#    - { key: 'PermitRootLogin', value: 'no' }
-#    - { key: 'LoginGraceTime', value: '20' }
-#    - { key: 'X11Forwarding', value: 'no' }
-#    - { key: 'ClientAliveInterval', value: '30' }
-#    - { key: 'ClientAliveCountMax', value: '1000' }
-#  notify:
-#    - restart ssh
-#  tags:
-#    - sshtest
+- name: sshd_config settings
+  lineinfile:
+    dest=/etc/ssh/sshd_config
+    state=present
+    regexp=^{{ item.key }}
+    line="{{ item.key }} {{ item.value }}"
+    insertafter=EOF
+ with_items:
+    - { key: 'PermitRootLogin', value: 'yes' }
+    - { key: 'PasswordAuthentication', value: 'yes' }
+  notify:
+    - restart ssh
+  tags:
+    - sshconfig
+
 ########################
 ### END of iocs pre  ###
 ########################
