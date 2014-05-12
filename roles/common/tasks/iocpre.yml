@@ -52,13 +52,30 @@
 
 
 - name: /etc/security/limits.d/90-nproc.conf config
-  copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
+  copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf 
+        owner=root group=root mode=644
   when: ansible_distribution == "RedHat"
   tags:
     - iocpre
 
 
+#- name: ssh config test
+#  lineinfile:
+#    dest=/etc/ssh/sshd_config
+#    state=present
+#    regexp=^{{ item.key }}
+#    line="{{ item.key }} {{ item.value }}"
+#    insertafter=EOF
+#  with_items:
+#    - { key: 'PermitRootLogin', value: 'no' }
+#    - { key: 'LoginGraceTime', value: '20' }
+#    - { key: 'X11Forwarding', value: 'no' }
+#    - { key: 'ClientAliveInterval', value: '30' }
+#    - { key: 'ClientAliveCountMax', value: '1000' }
+#  notify:
+#    - restart ssh
+#  tags:
+#    - sshtest
 ########################
 ### END of iocs pre  ###
 ########################
-

@@ -2,3 +2,6 @@
 
 - name: reload sysctl.conf
   command: /sbin/sysctl -p
+
+- name: restart ssh
+  service: name=sshd state=restarted

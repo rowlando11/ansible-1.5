@@ -1,10 +1,13 @@
-## file: production
+## file: test_hosts
 [appservers]
+ITSCL019A03.itservices.local
 
 [webservers]
+ITSCL019804.itservices.local
 
 [analytics]
+ITSCL019A02.itservices.local
 
 [dbservers]
+ITSCL019702.itservices.local
 
-[testservers]
