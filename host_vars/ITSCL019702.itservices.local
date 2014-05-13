@@ -1,1 +1,2 @@
 role: (test) DB
+env: test

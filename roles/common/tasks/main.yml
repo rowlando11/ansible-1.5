@@ -6,8 +6,14 @@
 ######################################################################
 ---
 
-- name: configure /etc/hosts file
-  template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=644
+- name: configure /etc/hosts file for test servers
+  template: src={{ item }} dest=/etc/hosts owner=root group=root mode=644
+  with_first_found:
+    - files:
+       - hosts-{{ env }}.j2
+       - hosts.j2
+      paths:
+       - /etc/ansible/roles/common/templates/
   tags:
     - hostfile
 

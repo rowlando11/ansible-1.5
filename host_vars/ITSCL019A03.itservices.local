@@ -1,1 +1,2 @@
 role: (test) APP
+env: test
