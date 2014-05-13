@@ -6,7 +6,7 @@
 ######################################################################
 ---
 
-- name: configure /etc/hosts file for test servers
+- name: configure /etc/hosts file
   template: src={{ item }} dest=/etc/hosts owner=root group=root mode=644
   with_first_found:
     - files:
