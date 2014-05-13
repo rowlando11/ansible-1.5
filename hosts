@@ -14,7 +14,4 @@ ITSCL019702.itservices.local
 
 # control host
 [me]
-ITSCL019501.itservices.local
-
-[targets]
-ITSCL019501.itservices.local	ansible_connection=local 
+ITSCL019501.itservices.local	ansible_connection=local

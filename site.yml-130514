@@ -1,0 +1,31 @@
+---
+
+# Appply common configuration to all hosts
+- hosts: all
+
+  roles:
+    - common
+
+# Configure and deploy database servers
+- hosts: dbservers
+
+  roles:
+    - dbserver
+
+# Configure and deploy webservers
+- hosts: webservers
+
+  roles:
+    - webserver
+
+# Configure and deploy analytics servers
+- hosts: analytics
+
+  roles:
+    - analytics
+
+# Configure and deploy application servers
+- hosts: appservers 
+
+  roles:
+     - appserver 

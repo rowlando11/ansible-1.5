@@ -1,6 +1,5 @@
 ## file: production
 [appservers]
-10.220.254.3
 
 [webservers]
 
