@@ -31,7 +31,7 @@
     - iocpre
 
 
-- name: extras (1) for /etc/security/limits.conf
+- name: /etc/security/limits.conf set 'notes hard nofile 65535'
   lineinfile: dest=/etc/security/limits.conf
               state=present
               insertafter='^# End of file'
@@ -40,7 +40,7 @@
   tags:
     - iocpre
 
-- name: extras (2) for /etc/security/limits.conf
+- name: /etc/security/limits.conf set 'notes soft nofile 65535'
   lineinfile: dest=/etc/security/limits.conf
               state=present
               insertafter='^# End of file'
