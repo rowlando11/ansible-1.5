@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
-# install vm tools - rowlando ronobrauch@centrality.com 14/05/2014
-# Copyright Centrality Ltd
-##################################################################
+# install vm tools - rowlando ronobrauch@centrality.com
+# Copyright Centrality Ltd 14/05/2014
+#######################################################
 use strict;
 use File::Copy;
 
@@ -15,7 +15,7 @@ Before we begin, please ensure that you have installed VMWare Tools in the vApp 
 
 _WP_
 
-# wait here fir a bit so that the above warning is seen
+# pause here for a bit so that the above warning is seen
 sleep 5;
 
 print "Starting install\n";
