@@ -5,3 +5,6 @@
 
 - name: restart ssh
   service: name=sshd state=restarted
+
+- name: restart iptables
+  service: name=iptables state=restarted
