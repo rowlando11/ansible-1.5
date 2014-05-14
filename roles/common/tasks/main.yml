@@ -24,6 +24,11 @@
     - motd
 
 
+- name: copy vmware tools install script to /usr/bin
+  copy: src=vmtools.pl dest=/usr/bin/vmtools.pl owner=root group=root mode=755
+  tags:
+    - vmtools
+
 ###########################################################################
 # specific include files go here as so to keep this file cleaner/readable #
 # #########################################################################
