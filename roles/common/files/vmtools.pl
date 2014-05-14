@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
-# install vm tools - rowlando ronobrauch@centrality.com
+# install vm tools - rowlando rowland dot ono at gmail dot com 
 # Copyright Centrality Ltd 14/05/2014
-#######################################################
+##############################################################
 use strict;
 use File::Copy;
 
