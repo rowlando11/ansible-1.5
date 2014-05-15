@@ -11,3 +11,9 @@ ITSCL019A02.itservices.local
 [dbservers]
 ITSCL019702.itservices.local
 
+[all]
+dbservers
+webservers
+analytics
+appsservers
+ITSCL019501.itservices.local	ansible_connection=local
