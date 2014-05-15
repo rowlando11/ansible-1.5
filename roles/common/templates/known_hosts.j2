@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+{% if inventory_hostname in groups['all'] %}
+{{ hostvars[inventory_hostname]['ansible_fqdn'] }} 
+{{ hostvars[inventory_hostname]['ansible_ssh_host_key_rsa_public'] }}
+{% endif %}
