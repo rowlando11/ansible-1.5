@@ -18,6 +18,12 @@
     - hostfile
 
 
+- name: Manage /etc/ssh/ssh_known_hosts 
+  template: src=known_hosts.j2 dest=/etc/ssh/ssh_known_hosts
+            owner=root group=root mode=0644
+  tags:
+    - knownhosts
+
 - name: configure message of the day 
   template: src=motd.j2 dest=/etc/motd owner=root group=root mode=644
   tags:
