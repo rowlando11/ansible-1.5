@@ -12,17 +12,12 @@ ITSCL019A98.itservices.local
 [dbservers]
 ITSCL019798.itservices.local
 
-[all]
+[dev]
 ITSCL019A97.itservices.local
 ITSCL019898.itservices.local
 ITSCL019A98.itservices.local
 ITSCL019798.itservices.local
-ITSCL019501.itservices.local      ansible_connection=local
 
 # control host
 [me]
 ITSCL019501.itservices.local 	  ansible_connection=local
-
-#[targets]
-#ITSCL019501.itservices.local     ansible_connection=local
-
