@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # install vmware tools
 # rowlando - 16/05/2014 rowland dot ono at gmail dot com
+########################################################
 
 import os
 import sys
