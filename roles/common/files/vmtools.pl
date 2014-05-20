@@ -6,7 +6,7 @@ use strict;
 use 5.10.0;
 use File::Copy;
 
-my $source = "VMwareTools-9.0.10-1481436.tar.gz";
+my $source = "VMwareTools-9.0.11-1743336.tar.gz";
 my $dest = "/tmp";
 
 
@@ -60,8 +60,8 @@ chdir "tools" or die "$!\n";
 say "Copying $source to $dest";
 copy ($source, $dest) or die "File cannot be copied.\n";
 chdir "/tmp";
-say "uncompressing VMwareTools-9.0.10-1481436.tar.gz..";
-system ("tar", "xvfz", "VMwareTools-9.0.10-1481436.tar.gz");
+say "uncompressing ${source}..";
+system ("tar", "xvfz", "$source");
 chdir "vmware-tools-distrib";
 system ("./vmware-install.pl");
 

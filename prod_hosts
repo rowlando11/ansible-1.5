@@ -1,27 +1,27 @@
 ## file: /etc/ansible/prod_hosts 
 [appservers]
-ITSCL019A04.itservices.local
-ITSCL019A05.itservices.local
+ITSCL019A04.itservices.local ha=1
+ITSCL019A05.itservices.local ha=2
 
 [webservers]
-ITSCL019808.itservices.local
-ITSCL019809.itservices.local
+ITSCL019808.itservices.local ha=1
+ITSCL019809.itservices.local ha=2
 
 [analytics]
-ITSCL019A06.itservices.local
-ITSCL019A07.itservices.local
+ITSCL019A06.itservices.local ha=1
+ITSCL019A07.itservices.local ha=2
 
 [dbservers]
-ITSCL019703.itservices.local
-ITSCL019704.itservices.local
+ITSCL019703.itservices.local ha=1
+ITSCL019704.itservices.local ha=2
 
 [prod]
-ITSCL019A04.itservices.local
-ITSCL019A05.itservices.local
-ITSCL019808.itservices.local
-ITSCL019809.itservices.local
-ITSCL019A06.itservices.local
-ITSCL019A07.itservices.local
-ITSCL019703.itservices.local
-ITSCL019704.itservices.local
+ITSCL019A04.itservices.local ha=1
+ITSCL019A05.itservices.local ha=2
+ITSCL019808.itservices.local ha=1
+ITSCL019809.itservices.local ha=2
+ITSCL019A06.itservices.local ha=1
+ITSCL019A07.itservices.local ha=2
+ITSCL019703.itservices.local ha=1
+ITSCL019704.itservices.local ha=2
 
