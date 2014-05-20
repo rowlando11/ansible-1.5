@@ -1,3 +1,0 @@
-# /etc/ansible/host_vars
-
-Just like “Group Vars”, a directory alongside the inventory file named “host_vars/” can contain a file named after each hostname in the inventory file, in YAML format. This provides a convenient place to assign variables to the host without having to embed them in the inventory file. The Host Vars file can also be used to define complex data structures that can’t be represented in the inventory file
