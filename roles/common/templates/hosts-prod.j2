@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+#10.220.70.98 ITSCL019798.itservices.local ITSCL019798
+#10.220.100.98   ITSCL019A98.itservices.local ITSCL019A98
+#10.220.100.97  ITSCL019A97.itservices.local ITSCL019A97
+#172.21.0.98  ITSCL019898.itservices.local ITSCL019898
+#10.220.50.1  ITSCL019501.itservices.local ITSCL019501
+#10.220.100.6  ITSCL019A06.itservices.local ITSCL019A06
+{{ ansible_default_ipv4.address }}  {{ ansible_hostname }}.itservices.local {{ ansible_hostname }}

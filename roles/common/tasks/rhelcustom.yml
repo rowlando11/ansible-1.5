@@ -1,0 +1,7 @@
+# file: roles/common/tasks/rhelcustom.yml 
+---
+
+- name: create custom rhel repo
+  copy: src=customrepo dest=/etc/yum.repos.d/rhel-custom.repo
+        owner=root group=root mode=0644
+  tags: rhelcustom 

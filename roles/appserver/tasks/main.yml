@@ -1,1 +1,24 @@
 # file: roles/appsever/tasks/main.yml
+---
+
+- name: copy pam.i686 and dependencies to dest server
+  copy: src={{ item }} dest=/tmp/{{ item }}
+  with_items:
+    - pam-1.1.1-17.el6.i686.rpm
+    - pam-devel-1.1.1-17.el6.i686.rpm
+    - db4-4.7.25-18.el6_4.i686.rpm
+    - cracklib-2.8.16-4.el6.i686.rpm
+  when: role == "APP"
+  tags: rhelcustom
+
+
+- name: force rpm install of pam.i686
+  shell: /bin/rpm -ivh --force /tmp/{{ item }}
+  with_items:
+    - db4-4.7.25-18.el6_4.i686.rpm
+    - cracklib-2.8.16-4.el6.i686.rpm
+    - pam-devel-1.1.1-17.el6.i686.rpm
+    - pam-1.1.1-17.el6.i686.rpm
+  when: role == "APP"
+  tags: rhelcustom
+
