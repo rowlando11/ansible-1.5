@@ -19,7 +19,13 @@
 
 
 - name: configure message of the day 
-  template: src=motd.j2 dest=/etc/motd owner=root group=root mode=644
+  template: src={{ item }} dest=/etc/motd owner=root group=root mode=644
+  with_first_found:
+    - files:
+       - motd-{{ env }}.j2
+       - motd.j2
+      paths:
+       - /etc/ansible/roles/common/templates/
   tags:
     - motd
 

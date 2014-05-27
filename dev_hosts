@@ -17,6 +17,7 @@ ITSCL019A97.itservices.local
 ITSCL019898.itservices.local
 ITSCL019A98.itservices.local
 ITSCL019798.itservices.local
+ITSCL019501.itservices.local      ansible_connection=local
 
 # control host
 [me]

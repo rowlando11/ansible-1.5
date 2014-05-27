@@ -10,11 +10,6 @@
   tags: rhelcustom
   when: role == "ANALYTICS"
 
-#- name: install KDE Desktop
-#  yum:  name="@KDE Desktop" state=present
-#  tags: rhelcustom
-#  when: role == "ANALYTICS"
-
 - name: install screen
   yum:  name=screen state=present
   when: role == "ANALYTICS" 
@@ -31,7 +26,8 @@
   tags: rhelcustom
 
 - name: force rpm install of pam.i686
-  shell: /bin/rpm -ivh --force /tmp/{{ item }}
+  shell: /bin/rpm -ivh --force /tmp/{{ item }}; touch /tmp/pam_installed.txt
+         creates=/tmp/pam_installed.txt
   with_items:
     - db4-4.7.25-18.el6_4.i686.rpm
     - cracklib-2.8.16-4.el6.i686.rpm
@@ -39,4 +35,6 @@
     - pam-1.1.1-17.el6.i686.rpm
   when: role == "ANALYTICS"
   tags: rhelcustom
-  
+
+
+- include: nfs.yml  
