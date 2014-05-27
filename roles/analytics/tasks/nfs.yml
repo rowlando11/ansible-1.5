@@ -1,0 +1,11 @@
+# file: roles/analytics/tasks/nfs.yml
+---
+ 
+- name: install nfs-utils and nfs-utils-lib on analytics servers 
+  yum:  name={{ item }} state=present
+  with_items:
+    - nfs-utils 
+    - nfs-utils-lib 
+
+- name: start nfs client services on analytics servers
+  service: name=nfs state=started enabled=yes
