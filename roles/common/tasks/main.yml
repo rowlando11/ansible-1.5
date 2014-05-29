@@ -16,7 +16,7 @@
        - /etc/ansible/roles/common/templates/
   tags:
     - hostfile
-
+ 
 
 - name: configure message of the day 
   template: src={{ item }} dest=/etc/motd owner=root group=root mode=644
@@ -29,12 +29,14 @@
   tags:
     - motd
 
+
 - name: add additional resolver
   lineinfile: dest=/etc/resolv.conf line="nameserver 10.220.10.2"
   tags: resolver
 
+
 - name: copy vmware tools install script to /usr/bin
-  copy: src=vmtools.pl dest=/usr/bin/vmtools.pl owner=root group=root mode=755
+  copy: src=vmtools.py dest=/usr/bin/vmtools.py owner=root group=root mode=755
   tags:
     - vmtools
 
