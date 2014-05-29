@@ -1,0 +1,5 @@
+# file: roles/common/tasks/extras.yml
+---
+- name: install extra packages
+  yum: name=nano state=installed
+  tags: extras 
