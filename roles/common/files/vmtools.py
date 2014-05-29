@@ -10,7 +10,7 @@ import errno
 import shutil
 import subprocess
 
-dest = "/tmp"
+dest = "/tmp/"
 #source = "VMwareTools-9.0.10-1481436.tar.gz"
 
 print
@@ -47,6 +47,7 @@ if result == -1:
 os.chdir("tools")
 print "Changing to tools directory"
 
+# find the vmwaretools file whatever its name
 for file in os.listdir("/root/tools"):
     if file.endswith(".gz"):
         source = file
@@ -71,5 +72,11 @@ os.chdir("vmware-tools-distrib")
 
 subprocess.call("./vmware-install.pl", shell=True)
 
+print "Cleaning up"
 subprocess.call("umount" +  " /root/tools", shell=True)
 
+if os.path.isfile(dest + source):
+    os.remove(dest + source)
+    print "Removed %s" % source, "from /tmp" 
+else:
+    print "Error: file not available for removal %s" % dest + source
