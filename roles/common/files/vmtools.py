@@ -11,7 +11,7 @@ import shutil
 import subprocess
 
 dest = "/tmp"
-source = "VMwareTools-9.0.10-1481436.tar.gz"
+#source = "VMwareTools-9.0.10-1481436.tar.gz"
 
 print
 print "Ensure that VMWare Tools is installed from the vApp VM Menu"
@@ -46,6 +46,12 @@ if result == -1:
 
 os.chdir("tools")
 print "Changing to tools directory"
+
+for file in os.listdir("/root/tools"):
+    if file.endswith(".gz"):
+        source = file
+
+
 print "Copying " + source, " to " +  dest 
 
 try:
@@ -58,10 +64,11 @@ except IOError as e:
 os.chdir("/tmp")
 print "Changing to /tmp directory"
 print
-print "Uncompressing" + source 
+print "Uncompressing" + ' source' 
 
-subprocess.call("tar" +  " xvfz" + " VMwareTools-9.0.10-1481436.tar.gz", shell=True)
+subprocess.call("tar" +  " xvfz " +  source, shell=True)
 os.chdir("vmware-tools-distrib")
+
 subprocess.call("./vmware-install.pl", shell=True)
 
 subprocess.call("umount" +  " /root/tools", shell=True)
