@@ -1,0 +1,10 @@
+# bootstrap epel-release install
+---
+
+- name: bootstrap epel-release install
+  copy: src=ansible-epel.repo
+         dest=/etc/yum.repos.d/epel.repo
+         owner=root group=root mode=644
+  tags:
+    - epel
+

@@ -41,13 +41,14 @@ m = open("/etc/mtab", "r")
 lines = m.read()
 result = lines.find('sr0')
 if result == -1:
-    print "/root/tools not mounted - please check that you have installed VMWare Tools in the vApp VM Menu first."
+    print "/root/tools not mounted - check that you have installed VMWare Tools in the vApp VM Menu first."
     exit 
 
 os.chdir("tools")
 print "Changing to tools directory"
 
 # find the vmwaretools file whatever its name
+# as the name changes with updates
 for file in os.listdir("/root/tools"):
     if file.endswith(".gz"):
         source = file

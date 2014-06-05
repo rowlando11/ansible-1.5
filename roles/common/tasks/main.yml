@@ -49,5 +49,7 @@
 - include: logs.yml                     # configure logs
 - include: timelocale.yml               # configure time/locale
 - include: iocpre.yml                   # ioc prerequisites
-- include: rhelcustom.yml               # temp custom repo for redhat boxes
+- include: epel.yml
+- include: rhelcustom.yml               # dag wiers rep
 - include: extras.yml                   # additional packages
+- include: nrpe.yml                     # nagios nrpe client

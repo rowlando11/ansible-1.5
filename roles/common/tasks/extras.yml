@@ -1,5 +1,8 @@
 # file: roles/common/tasks/extras.yml
 ---
 - name: install extra packages
-  yum: name=nano state=installed
+  yum: name={{ item }} state=installed
+  with_items:
+     - nano
+     - yum-plugin-security
   tags: extras 

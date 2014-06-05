@@ -1,0 +1,30 @@
+# file: roles/common/tasks/nrpe.yml
+---
+
+- name: install update check dependancies
+  yum: name={{ item }} state=installed
+  with_items:
+    - http://10.220.50.1/perl-Config-Tiny-2.12-7.1.el6.noarch.rpm
+    - http://10.220.50.1/perl-Readonly-1.03-1.2.el6.rfx.noarch.rpm
+  tags: nrpe
+
+- name: install and configure nrpe plugin
+  yum: name={{ item }} state=installed enablerepo=rpmforge
+  with_items:
+    - nrpe
+    - nagios-plugins-all
+    - nagios-plugins-check-updates
+    - check-mk-agent
+  tags: nrpe
+
+- name: nrpe service
+  service: name=nrpe state=stopped enabled=no
+  tags: nrpe
+
+- name: xinetd service
+  service: name=xinetd state=started enabled=yes
+- name: copy mrpe config over
+  template: src=mrpe.cfg.j2 dest=/etc/check-mk-agent/mrpe.cfg owner=root
+            group=root mode=0644
+  tags: nrpe
+  notify: restart xinetd 

@@ -6,6 +6,7 @@
     - ruby
     - vim-common
     - vim-enhanced 
+    - http://files.omdistro.org/releases/centos_rhel/omd-1.10-rh61-31.x86_64.rpm
    
 
 
