@@ -1,7 +1,0 @@
-[rhel-custom]
-name=RHEL 6.5 custom repository
-baseurl=http://fs.rowlando.co.uk/centos/6.5/
-gpgcheck=1
-gpgkey=http://fs.rowlando.co.uk/centos/6.5/pki/RPM-GPG-KEY-CentOS-6
-enabled=1
-
