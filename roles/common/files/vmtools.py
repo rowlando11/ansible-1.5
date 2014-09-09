@@ -11,7 +11,6 @@ import shutil
 import subprocess
 
 dest = "/tmp/"
-#source = "VMwareTools-9.0.10-1481436.tar.gz"
 
 print
 print "Ensure that VMWare Tools is installed from the vApp VM Menu"
