@@ -3,10 +3,13 @@
 #########################################
 
 import urllib2
+import subprocess
 from xml.dom import minidom
 
+url = 'www.ratesetter.com/lending/rates_feed.aspx'
 
-doc = minidom.parse('rateset.xml')
+subprocess.call(["curl", "-s", url, "-o", "/tmp/rateset.xml"])
+doc = minidom.parse('/tmp/rateset.xml')
 nodes = doc.getElementsByTagName('content')
 for node in nodes:
 	print node.firstChild.nodeValue
