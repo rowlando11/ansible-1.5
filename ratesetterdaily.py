@@ -12,4 +12,4 @@ file.close()
 dom = parseString(data)
 xmlTag = dom.getElementsByTagName('content')[0].toxml()
 xmlData=xmlTag.replace('<content>', '').replace('</content>','')
-print xmlData[:-83]  +  xmlData[79:]
+print xmlData[:-83]  +  xmlData[77:]
