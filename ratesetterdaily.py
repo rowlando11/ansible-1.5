@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # get daily ratesetter  rates
 # http://www.ratesetter.com
-#################################
+################################
 
 import urllib2
 from xml.dom.minidom import parse,parseString
