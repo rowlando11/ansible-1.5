@@ -1,0 +1,11 @@
+---
+# handlers file for etck
+#
+- name: initialise etckeeper
+  command: etckeeper init 
+  args:
+   chdir: /etc 
+  notify: etckeeper commit
+
+- name: etckeeper commit
+  command: etckeeper commit "Initial Commit"

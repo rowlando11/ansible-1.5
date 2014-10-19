@@ -1,0 +1,11 @@
+---
+# tasks file for etck
+
+- name: install etckeeper
+  yum:  name={{ item }} state=installed
+  with_items:
+     - git
+     - etckeeper
+
+  notify: initialise etckeeper
+  tags: etckeeper
