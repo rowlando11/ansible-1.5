@@ -6,6 +6,8 @@
   with_items:
      - git
      - etckeeper
+  register: result
 
   notify: initialise etckeeper
-  tags: etckeeper
+  when: result.changed
+  tags: etck
