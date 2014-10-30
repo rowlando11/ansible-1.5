@@ -1,0 +1,71 @@
+--- 
+# install etckeeper and ipa-client
+- hosts: {{ hosts }}
+  vars:
+    var1: {{ var1 }}
+    var2: {{ var2 }}
+  remote_user: {{ user }}
+  tasks:
+
+  - name: install etc keeper and catch debug output
+    yum: name={{ item }} state=present
+    with_items:
+    - git
+    - etckeeper
+    register: result
+    tags: etckeeper
+
+  - name: initialise etckeeper
+    debug: var=result
+    notify: initialise etckeeper
+    when: result.changed
+    tags: etckeeper
+
+  - name: install needed packages for local client
+    yum: name={{ item }} state=installed
+    with_items:
+      - ipa-client
+      - sssd-tools
+      - sssd-client
+      - sssd-common
+    tags:
+      - ipaclient
+      - sssd
+
+  - name: ensure sssd started
+    service: name=sssd enabled=yes state=started
+
+  - name: copy the krb5 and sudo-ldap config files over
+    copy: src= {{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644 backup=yes
+    with_items:
+      - { src: 'files/krb5.conf', dest: '/etc/krb5.conf' }
+      - { src: 'files/sudo-ldap', dest: '/etc/sudo-ldap.conf' }
+    tags:
+      - krb5
+      - sudo-ldap
+
+  - name: copy sssd.conf file over
+    template: src={{ item.src }} dest={{ item.dest }} owner=root group=root mode=0644 backup=yes
+    with_items:
+      - { src: 'templates/sssd.conf.j2', dest: '/etc/sssd/sssd.conf' }
+    notify: restart sssd
+    tags: sssd
+
+
+
+  handlers:
+    - name: restart sssd
+      service: name=sssd state=restarted
+      
+    - name: etckeeper commit
+      command: etckeeper commit "Initial Commit"
+
+    - name: initialise etckeeper
+      command: etckeeper init
+      args:
+        chdir:/etc
+      notify: etckeeper commit
+      
+      
+      
+      
