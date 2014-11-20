@@ -1,0 +1,28 @@
+- hosts: 127.0.0.1
+  remote_user: user
+  sudo: yes
+  vars:
+    ssh_known_hosts_command: "ssh-keyscan -H -T 10"
+    ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
+  tasks:
+
+
+  - name: Check if {{ ssh_known_hosts_file }} exists
+    stat: "path={{ ssh_known_hosts_file }}"
+    register: p
+
+  - name: Create {{ ssh_known_hosts_file }} if it doesn't exist
+    file: "path={{ ssh_known_hosts_file }} state=touch"
+    when: p.stat.exists == false
+
+  - name: Check host name availability
+    shell: "ssh-keygen -f {{ ssh_known_hosts_file }} -F {{ item }}"
+    with_items: groups['all']
+    register: ssh_known_host_results
+
+  - name: Scan the public key
+    shell: "{{ ssh_known_hosts_command }} {{ item.item }} >> {{ ssh_known_hosts_file }}"
+    with_items: ssh_known_host_results.results
+    when: item.stdout == ""
+
+  - pause: prompt="If you could not log into x server previously, you should be able to now"
