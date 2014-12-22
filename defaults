@@ -1,0 +1,7 @@
+---
+# defaults file for ssh
+root_user: root
+group_user: root
+ssh_known_hosts_command: "ssh-keyscan -H -T 10"
+ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
+
