@@ -1,0 +1,26 @@
+---
+
+- hosts: '{{ hosts }}'
+  remote_user: ardenta
+  sudo: yes
+  vars:
+    ssl_conf: "/etc/httpd/conf.d/ssl.conf"
+
+  tasks:
+
+   - name: Add the poodle patch
+     lineinfile: >
+       dest={{ ssl_conf }}
+       regexp=^SSLProto
+       line='SSLProtocol all -SSLv2 -SSLv3'
+     notify: Config check
+
+  handlers:
+
+   - name: Config check
+     command: /usr/sbin/apachectl configtest
+     register: apache_out
+     notify: Restart apache
+
+   - name: Restart apache
+     service: name=httpd state=restarted
