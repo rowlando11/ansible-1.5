@@ -25,4 +25,4 @@
     with_items: ssh_known_host_results.results
     when: item.stdout == ""
 
-  - pause: prompt="If you could not log into x server previously, you should be able to now"
+
